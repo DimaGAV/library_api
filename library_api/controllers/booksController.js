@@ -13,7 +13,7 @@ exports.getBooks = async (req, res) => {
 // Получить книгу по id
 exports.getBookById = async (req, res) => {
   try {
-    const book = await Book.findById(req.params.id);
+    const book = await Book.findById(req.params._id);
     if (!book) return res.status(404).json({ message: 'Книга не найдена' });
     res.json(book);
   } catch (error) {
@@ -35,7 +35,7 @@ exports.createBook = async (req, res) => {
 // Обновить книгу
 exports.updateBook = async (req, res) => {
   try {
-    const book = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const book = await Book.findByIdAndUpdate(req.params._id, req.body, { new: true });
     if (!book) return res.status(404).json({ message: 'Книга не найдена' });
     res.json(book);
   } catch (error) {
@@ -46,7 +46,7 @@ exports.updateBook = async (req, res) => {
 // Удалить книгу
 exports.deleteBook = async (req, res) => {
   try {
-    const book = await Book.findByIdAndDelete(req.params.id);
+    const book = await Book.findByIdAndDelete(req.params._id);
     if (!book) return res.status(404).json({ message: 'Книга не найдена' });
     res.json({ message: 'Книга удалена' });
   } catch (error) {

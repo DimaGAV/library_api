@@ -25,7 +25,7 @@ app.use((req, res) => {
 app.use(errorHandler);
 
 // Подключение к MongoDB
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     console.log('Подключено к MongoDB');
     app.listen(process.env.PORT, () => {

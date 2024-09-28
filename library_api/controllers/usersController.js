@@ -13,7 +13,7 @@ exports.getUsers = async (req, res) => {
 // Получить пользователя по id
 exports.getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params._id);
     if (!user) return res.status(404).json({ message: 'Пользователь не найден' });
     res.json(user);
   } catch (error) {
@@ -21,9 +21,10 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-// Создать пользователя
-exports.createUser = async (req, res) => {
+// Создать пользовате
+ exports.createUser = async (req, res) => {
   try {
+    console.log('Request body:', req.body);
     const user = new User(req.body);
     await user.save();
     res.status(201).json(user);
@@ -35,7 +36,7 @@ exports.createUser = async (req, res) => {
 // Обновить пользователя
 exports.updateUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const user = await User.findByIdAndUpdate(req.params._id, req.body, { new: true });
     if (!user) return res.status(404).json({ message: 'Пользователь не найден' });
     res.json(user);
   } catch (error) {
@@ -46,10 +47,14 @@ exports.updateUser = async (req, res) => {
 // Удалить пользователя
 exports.deleteUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.id);
+    const user = await User.findByIdAndDelete(req.params._id);
     if (!user) return res.status(404).json({ message: 'Пользователь не найден' });
     res.json({ message: 'Пользователь удален' });
   } catch (error) {
     res.status(500).json({ message: 'Не удалось удалить пользователя' });
   }
 };
+
+/* module.exports = {
+  createUser,
+} */

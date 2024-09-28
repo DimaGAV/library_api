@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+/* const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     console.log('Подключено к MongoDB');
     app.listen(process.env.PORT, () => {
@@ -10,3 +10,4 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => {
     console.error('Ошибка подключения к MongoDB:', err);
   });
+ */
