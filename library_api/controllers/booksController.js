@@ -28,9 +28,15 @@ exports.createBook = async (req, res) => {
     await book.save();
     res.status(201).json(book);
   } catch (error) {
+    if (error.name === 'ValidationError') {
+      // Если ошибка валидации, возвращаем подробное сообщение
+      const errors = Object.values(error.errors).map(err => err.message);
+      return res.status(400).json({ message: 'Ошибка валидации', errors });
+    }
     res.status(500).json({ message: 'Не удалось создать книгу' });
   }
 };
+
 
 // Обновить книгу
 exports.updateBook = async (req, res) => {
